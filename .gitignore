@@ -1,1 +1,18 @@
+# Ignorar el directorio target
+target/
+# Ignorar archivos específicos del IDE 
+*.iml
+.idea/
+*.ipr
+*.iws
+# Ignorar archivos y directorios del wrapper de Maven
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 
+# Ignorar archivos de registro y temporales
+*.log
+*.tmp
+
+# Ignorar archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db
