@@ -19,7 +19,7 @@ public class TorneoDobleEliminacion extends Torneo {
 
     @Override
     public void iniciarTorneo() {
-        System.out.println("🏆 Iniciando Torneo de Doble Eliminación...");
+        System.out.println(" Iniciando Torneo de Doble Eliminación...");
 
         List<Equipo> rondaActual = new ArrayList<>(equipos);
         int ronda = 1;
@@ -55,9 +55,9 @@ public class TorneoDobleEliminacion extends Torneo {
         }
 
         if (!rondaActual.isEmpty()) {
-            System.out.println("\n🏆 El campeón es: " + rondaActual.get(0).getNombre());
+            System.out.println("\n El campeón es: " + rondaActual.get(0).getNombre());
         } else {
-            System.out.println("\n❌ No se pudo determinar un campeón.");
+            System.out.println("\n No se pudo determinar un campeón.");
         }
     }
 
@@ -66,7 +66,7 @@ public class TorneoDobleEliminacion extends Torneo {
         Equipo ganador = calcularGanador(e1, e2);
         // Determinar el perdedor
         Equipo perdedor = (ganador == e1) ? e2 : e1;
-        System.out.println("⚔️ " + e1.getNombre() + " vs " + e2.getNombre() + " ➡️ Perdedor: " + perdedor.getNombre());
+        System.out.println("--- " + e1.getNombre() + " vs " + e2.getNombre() + " => Perdedor: " + perdedor.getNombre());
         return perdedor;
     }
 
