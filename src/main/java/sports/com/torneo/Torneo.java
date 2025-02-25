@@ -1,8 +1,10 @@
 package sports.com.torneo;
 import sports.com.model.Equipo;
+import sports.com.interfaces.Competencia;
 
 import java.util.List;
-public abstract class Torneo {
+
+public abstract class Torneo implements Competencia {
     protected List<Equipo> equipos;
 
     public Torneo(List<Equipo> equipos) {
@@ -11,10 +13,11 @@ public abstract class Torneo {
         }
         this.equipos = equipos;
     }
+
     public abstract void iniciarTorneo(); // Cada tipo de torneo implementa su versión
     public abstract void asignarPuntos(Equipo equipo);
 
-    // Metodo para registrar un equipo
+    // Método para registrar un equipo
     public void registrarEquipo(Equipo equipo) {
         if (equipo != null && !equipos.contains(equipo) && equipo.getCantidadJugadores() >= 2) {
             equipos.add(equipo);
