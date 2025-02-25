@@ -11,9 +11,9 @@ import sports.com.torneo.Torneo;
 
 public class Menu {
         private final Scanner scanner;
-        private List<Equipo> equipos;
-        private List<Jugador> jugadores;
-        private Torneo torneo;
+        private final List<Equipo> equipos;
+        private final List<Jugador> jugadores;
+        private final Torneo torneo;
 
         public Menu(Scanner scanner, List<Equipo> equipos, List<Jugador> jugadores, Torneo torneo) {
             this.scanner = scanner;
