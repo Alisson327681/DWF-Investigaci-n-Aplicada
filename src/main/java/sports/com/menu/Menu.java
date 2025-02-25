@@ -4,20 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 import sports.com.model.Equipo;
 import sports.com.model.Jugador;
+import sports.com.torneo.TorneoDobleEliminacion;
+import sports.com.torneo.TorneoEliminacionDirecta;
+import sports.com.torneo.TorneoLiga;
+import sports.com.torneo.Torneo;
 
-    public class Menu {
+public class Menu {
         private final Scanner scanner;
         private List<Equipo> equipos;
         private List<Jugador> jugadores;
+        private Torneo torneo;
 
-        public Menu(Scanner scanner, List<Equipo> equipos, List<Jugador> jugadores) {
+        public Menu(Scanner scanner, List<Equipo> equipos, List<Jugador> jugadores, Torneo torneo) {
             this.scanner = scanner;
             this.equipos = equipos;
             this.jugadores = jugadores;
+            this.torneo = torneo;
         }
+    public Menu(Torneo torneo) {
+        this(new Scanner(System.in), new ArrayList<>(), new ArrayList<>(), torneo);
+    }
         public Menu() {
-            this(new Scanner(System.in), new ArrayList<>(), new ArrayList<>());
+            this(new Scanner(System.in), new ArrayList<>(), new ArrayList<>(), null);
         }
+
         // Getters para testing
         public List<Equipo> getEquipos() {
             return equipos;
@@ -25,10 +35,12 @@ import sports.com.model.Jugador;
         public List<Jugador> getJugadores() {
             return jugadores;
         }
+
         // Metodo para validar equipo
         public boolean validarEquipo(Equipo equipo) {
             return equipo != null && equipo.getCantidadJugadores() >= 2;
         }
+
         // Metodo principal del menú
         public void mostrarMenuPrincipal() {
             boolean salir = false;
@@ -39,7 +51,8 @@ import sports.com.model.Jugador;
                 System.out.println("2. Registrar Jugador");
                 System.out.println("3. Modalidad de Torneo");
                 System.out.println("4. Ver Equipos Inscritos");
-                System.out.println("5. Salir");
+                System.out.println("5. Ver Puntuacion");
+                System.out.println("6. Salir");
                 System.out.print("Seleccione una opción: ");
 
                 int opcion = leerOpcion();
@@ -58,6 +71,9 @@ import sports.com.model.Jugador;
                         verEquiposRegistrados();
                         break;
                     case 5:
+                        verPuntuacion();
+                        break;
+                    case 6:
                         salir = true;
                         break;
                     default:
@@ -68,9 +84,10 @@ import sports.com.model.Jugador;
             scanner.close();
         }
 
+    private void verPuntuacion() {
+    }
 
-
-        // Metodo para leer opciones del usuario
+    // Metodo para leer opciones del usuario
         private int leerOpcion() {
             try {
                 return Integer.parseInt(scanner.nextLine().trim());
@@ -141,20 +158,21 @@ import sports.com.model.Jugador;
             System.out.println("   Un equipo debe perder dos veces para quedar eliminado");
 
             int modalidad = leerOpcion();
+            Torneo torneo = null;
             switch (modalidad) {
                 case 1:
-                    iniciarTorneoEliminacionDirecta();
+                    torneo = new TorneoEliminacionDirecta(equipos);
                     break;
                 case 2:
-                    iniciarTorneoLiga();
+                    torneo = new TorneoLiga(equipos);
                     break;
                 case 3:
-                    iniciarTorneoDobleEliminacion();
+                    torneo = new TorneoDobleEliminacion(equipos);
                     break;
                 default:
-                    System.out.println("Modalidad de juego no válida, intente de nuevo");
-                    break;
-            }
+                    System.out.println("Modalidad no válida.");
+                    return;}
+            torneo.iniciarTorneo();
         }
 
 
@@ -171,22 +189,6 @@ import sports.com.model.Jugador;
                 System.out.println("Cantidad de jugadores: " + equipo.getCantidadJugadores());
                 System.out.println("------------------------");
             }
-        }
-
-        // Métodos para iniciar diferentes tipos de torneo que va seleccionar el participante
-        private void iniciarTorneoEliminacionDirecta() {
-            System.out.println("Iniciando torneo de Eliminación Directa...");
-            // Aun no esta esta parte jeje
-        }
-
-        private void iniciarTorneoLiga() {
-            System.out.println("Iniciando torneo de Liga...");
-            // Aun no esta esta parte jeje
-        }
-
-        private void iniciarTorneoDobleEliminacion() {
-            System.out.println("Iniciando torneo de Doble Eliminación...");
-            // Aun no esta esta parte jeje
         }
 
     }

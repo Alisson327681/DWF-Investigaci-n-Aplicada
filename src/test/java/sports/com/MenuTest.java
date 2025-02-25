@@ -5,6 +5,9 @@ import sports.com.model.Equipo;
 import sports.com.model.Jugador;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sports.com.torneo.Torneo;
+import sports.com.torneo.TorneoLiga;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,12 +16,14 @@ class MenuTest {
     private Menu menu;
     private ArrayList<Equipo> equipos;
     private ArrayList<Jugador> jugadores;
+    private Torneo torneo;
 
     @BeforeEach
     void setUp() {
         equipos = new ArrayList<>();
         jugadores = new ArrayList<>();
-        menu = new Menu(new Scanner(System.in), equipos, jugadores);
+        torneo = new TorneoLiga(equipos);
+        menu = new Menu(new Scanner(System.in), equipos, jugadores, torneo);
     }
 
     @Test
